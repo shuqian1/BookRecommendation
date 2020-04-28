@@ -1,4 +1,4 @@
-package com.thoughworks.bookrecommendation.model
+package com.thoughworks.bookrecommendation.model.data
 
 data class Book(
     val bytime: String,
