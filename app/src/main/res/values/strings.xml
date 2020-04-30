@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Book Recommendation</string>
     <string name="ic_book">ic_book</string>
+    <string name="header_img">header_img</string>
+    <string name="catalog">图书分类目录</string>
 </resources>

@@ -8,14 +8,14 @@ import com.thoughworks.bookrecommendation.R
 import com.thoughworks.bookrecommendation.databinding.CatalogItemBinding
 import com.thoughworks.bookrecommendation.model.data.Catalog
 
-class CatalogAdaptor : RecyclerView.Adapter<CatalogAdaptor.CatalogViewHolder>() {
+class CatalogAdaptor : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val catalogList = mutableListOf<Catalog>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): CatalogAdaptor.CatalogViewHolder {
+    ): RecyclerView.ViewHolder {
         return CatalogViewHolder(
             DataBindingUtil.inflate(
                 LayoutInflater.from(parent.context),
@@ -30,12 +30,8 @@ class CatalogAdaptor : RecyclerView.Adapter<CatalogAdaptor.CatalogViewHolder>() 
         return catalogList.size
     }
 
-    override fun onBindViewHolder(holder: CatalogAdaptor.CatalogViewHolder, position: Int) {
-        holder.bind(catalogList[position])
-    }
-
-    override fun getItemViewType(position: Int): Int {
-        return position
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        (holder as CatalogViewHolder).bind(catalogList[position])
     }
 
     fun updateData(newData: List<Catalog>?) {

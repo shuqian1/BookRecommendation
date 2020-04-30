@@ -6,10 +6,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/catalog_view"
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="30dp" />
+        app:srlEnableNestedScrolling="true">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/catalog_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:overScrollMode="never" />
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
