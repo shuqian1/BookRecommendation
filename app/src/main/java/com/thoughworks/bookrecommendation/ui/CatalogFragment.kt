@@ -16,8 +16,7 @@ class CatalogFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val catalogViewModel = CatalogViewModel()
-
+        val catalogViewModel = CatalogViewModel(this.requireContext())
 //        val catalogBuilding = DataBindingUtil.setContentView<ActivityMainBinding>(,R.layout.activity_main)
         val catalogBuilding = DataBindingUtil.inflate<CatalogFragmentBinding>(
             inflater,
@@ -26,7 +25,6 @@ class CatalogFragment : Fragment() {
             false
         )
         catalogBuilding.catalog = catalogViewModel
-
         catalogBuilding.lifecycleOwner = this
         catalogViewModel.getCatalogList()
         return catalogBuilding.root
