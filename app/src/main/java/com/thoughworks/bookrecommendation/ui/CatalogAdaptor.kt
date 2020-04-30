@@ -1,6 +1,7 @@
 package com.thoughworks.bookrecommendation.ui
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -12,11 +13,13 @@ class CatalogAdaptor : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val catalogList = mutableListOf<Catalog>()
 
+    private lateinit var clickListener: OnItemClickListener
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): RecyclerView.ViewHolder {
-        return CatalogViewHolder(
+        val viewHolder = CatalogViewHolder(
             DataBindingUtil.inflate(
                 LayoutInflater.from(parent.context),
                 R.layout.catalog_item,
@@ -24,6 +27,15 @@ class CatalogAdaptor : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 false
             )
         )
+
+        viewHolder.itemView.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View) {
+                clickListener.onItemClick(v, v.tag)
+            }
+
+        })
+
+        return viewHolder
     }
 
     override fun getItemCount(): Int {
@@ -32,6 +44,7 @@ class CatalogAdaptor : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         (holder as CatalogViewHolder).bind(catalogList[position])
+        holder.itemView.tag = catalogList[position].id
     }
 
     fun updateData(newData: List<Catalog>?) {
@@ -47,6 +60,10 @@ class CatalogAdaptor : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         fun bind(catalog: Catalog) {
             dataBinding.catalog = catalog
         }
+    }
+
+    fun setOnItemClickListener(onItemClickListener: OnItemClickListener) {
+        this.clickListener = onItemClickListener
     }
 
 }

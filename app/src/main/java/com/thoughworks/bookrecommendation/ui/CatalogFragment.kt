@@ -16,7 +16,7 @@ import com.thoughworks.bookrecommendation.viewmodel.CatalogViewModel
 class CatalogFragment : Fragment() {
     private val catalogAdaptor by lazy { CatalogAdaptor() }
 
-    private lateinit var catalogView :RecyclerView
+    private lateinit var catalogView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,7 +24,7 @@ class CatalogFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         super.onCreate(savedInstanceState)
-        val rootView = inflater.inflate(R.layout.catalog_fragment,container,false)
+        val rootView = inflater.inflate(R.layout.catalog_fragment, container, false)
 
         val catalogViewModel = CatalogViewModel(requireContext())
         catalogViewModel.catalogLiveData.observe(viewLifecycleOwner, Observer { catalogs ->
@@ -32,7 +32,7 @@ class CatalogFragment : Fragment() {
         })
 
         catalogView = rootView.findViewById<RecyclerView>(R.id.catalog_view)
-        catalogView.layoutManager = GridLayoutManager(context,2)
+        catalogView.layoutManager = GridLayoutManager(context, 2)
 
         catalogView.addItemDecoration(object : RecyclerView.ItemDecoration() {
             override fun getItemOffsets(
@@ -42,6 +42,17 @@ class CatalogFragment : Fragment() {
                 state: RecyclerView.State
             ) {
                 outRect.bottom += 8
+            }
+        })
+
+        catalogAdaptor.setOnItemClickListener(object : OnItemClickListener {
+            override fun onItemClick(view: View, any: Any) {
+                var bundle = Bundle()
+                bundle.putString("id",any.toString())
+                val catalogFragment=CatalogFragment()
+                catalogFragment.arguments = bundle
+                println("id:"+any.toString())
+//                TODO switch fragment
             }
         })
 
