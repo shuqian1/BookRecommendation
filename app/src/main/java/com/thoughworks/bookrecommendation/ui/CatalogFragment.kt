@@ -1,5 +1,6 @@
 package com.thoughworks.bookrecommendation.ui
 
+import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -53,6 +54,9 @@ class CatalogFragment : Fragment() {
                 catalogFragment.arguments = bundle
                 println("id:"+any.toString())
 //                TODO switch fragment
+                val intent = Intent(activity, BookListActivity::class.java)
+                intent.putExtras(bundle)
+                startActivity(intent)
             }
         })
 

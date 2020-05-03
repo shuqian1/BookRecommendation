@@ -12,9 +12,11 @@ import com.thoughworks.bookrecommendation.repository.BookRepository
 
 class BookListViewModel(context: Context) : ViewModel() {
     var booksLiveData = MediatorLiveData<List<Book>>()
+    var bookDetailLiveData = MediatorLiveData<Book>()
+
     private val bookRepository = BookRepository(context)
 
-    fun getCatalogList(catalogId: Int) {
+    fun getBookList(catalogId: Int, pageIndex:Int = 1) {
         getDBBookList(catalogId)
         val observer: ResultObserver<PageResult> =
             object : ResultObserver<PageResult>() {
@@ -27,7 +29,28 @@ class BookListViewModel(context: Context) : ViewModel() {
                     e.printStackTrace()
                 }
             }
-        bookRepository.getBookList(catalogId, 1, observer)
+        bookRepository.getBookList(catalogId, pageIndex, observer)
+    }
+
+    fun loadMoreBookList(catalogId: Int, pageIndex:Int = 1) {
+        val observer: ResultObserver<PageResult> =
+            object : ResultObserver<PageResult>() {
+                override fun onSuccess(result: PageResult?) {
+                    val bookList = mutableListOf<Book>()
+                    booksLiveData.value?.let {
+                        bookList.addAll(it)
+                    }
+                    result?.data?.let {
+                        bookList.addAll(it)
+                    }
+                    booksLiveData.postValue(bookList)
+                }
+
+                override fun onFailure(e: Throwable, isNetWorkError: Boolean) {
+                    e.printStackTrace()
+                }
+            }
+        bookRepository.getBookList(catalogId, pageIndex, observer)
     }
 
     private fun getDBBookList(catalogId: Int) {

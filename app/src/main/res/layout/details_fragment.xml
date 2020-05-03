@@ -1,133 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/detail"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:id="@+id/book_img"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="8dp"
-        android:contentDescription="@string/book_img"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_launcher_foreground" />
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/title_icon"
-        app:layout_constraintStart_toEndOf="@+id/title_icon"
-        app:layout_constraintTop_toTopOf="@+id/title_icon"
-        tools:text="向诸葛亮借智慧" />
+    <data>
+        <variable
+            name="bookDetail"
+            type="com.thoughworks.bookrecommendation.viewmodel.BookListViewModel" />
 
-    <TextView
-        android:id="@+id/sub1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textStyle="italic"
-        app:layout_constraintStart_toStartOf="@+id/title"
-        app:layout_constraintTop_toBottomOf="@+id/title_icon"
-        tools:text="书名简介" />
+    </data>
 
-    <ImageView
-        android:id="@+id/title_icon"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/book_img"
-        app:srcCompat="@drawable/ic_medal_name"
-        android:contentDescription="@string/book_title_icon" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/detail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/bytime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/bytime"
-        app:layout_constraintStart_toStartOf="@+id/sub1"
-        app:layout_constraintTop_toBottomOf="@+id/sub1" />
+        <ImageView
+            android:id="@+id/book_img"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/book_img"
+            app:remote="@{bookDetail.bookDetailLiveData.img}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_launcher_foreground" />
 
-    <ImageView
-        android:id="@+id/like_icon"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/reading"
-        app:layout_constraintTop_toTopOf="@+id/title_icon"
-        app:srcCompat="@drawable/ic_like"
-        android:contentDescription="@string/like_icon" />
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="@{bookDetail.bookDetailLiveData.title}"
+            app:layout_constraintBottom_toBottomOf="@+id/title_icon"
+            app:layout_constraintStart_toEndOf="@+id/title_icon"
+            app:layout_constraintTop_toTopOf="@+id/title_icon"
+            tools:text="向诸葛亮借智慧" />
 
-    <TextView
-        android:id="@+id/reading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/title"
-        tools:text="8091人阅读" />
+        <TextView
+            android:id="@+id/sub1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textStyle="italic"
+            android:text="@{bookDetail.bookDetailLiveData.sub1}"
+            app:layout_constraintStart_toStartOf="@+id/title"
+            app:layout_constraintTop_toBottomOf="@+id/title_icon"
+            tools:text="书名简介" />
 
-    <TextView
-        android:id="@+id/description"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/description_background"
-        android:gravity="center"
-        android:text="@string/description"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bytime" />
+        <ImageView
+            android:id="@+id/title_icon"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/book_img"
+            app:srcCompat="@drawable/ic_medal_name"
+            android:contentDescription="@string/book_title_icon" />
 
-    <TextView
-        android:id="@+id/sub2"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/sub2_background"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description"
-        tools:text="《向诸葛亮借智慧》是中央电视台《百家讲坛》主讲人赵玉平老师编著的一本管理学类图书。" />
+        <TextView
+            android:id="@+id/bytime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{bookDetail.bookDetailLiveData.bytime}"
+            app:layout_constraintStart_toStartOf="@+id/sub1"
+            app:layout_constraintTop_toBottomOf="@+id/sub1" />
 
-    <ImageView
-        android:id="@+id/link_icon"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintStart_toStartOf="@+id/title_icon"
-        app:layout_constraintTop_toBottomOf="@+id/sub2"
-        app:srcCompat="@drawable/ic_insert_link"
-        android:contentDescription="@string/link_icon" />
+        <ImageView
+            android:id="@+id/like_icon"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/reading"
+            app:layout_constraintTop_toTopOf="@+id/title_icon"
+            app:srcCompat="@drawable/ic_like"
+            android:contentDescription="@string/like_icon" />
 
-    <TextView
-        android:id="@+id/online"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        app:layout_constraintBottom_toBottomOf="@+id/link_icon"
-        app:layout_constraintStart_toEndOf="@+id/link_icon"
-        app:layout_constraintTop_toTopOf="@+id/link_icon"
-        tools:text="http://book.jd.com/10483893.html" />
+        <TextView
+            android:id="@+id/reading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/title"
+            tools:text="8091人阅读" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/description_background"
+            android:gravity="center"
+            android:text="@string/description"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bytime" />
+
+        <TextView
+            android:id="@+id/sub2"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/sub2_background"
+            android:textSize="16sp"
+            android:text="@{bookDetail.bookDetailLiveData.sub2}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/description"
+            tools:text="《向诸葛亮借智慧》是中央电视台《百家讲坛》主讲人赵玉平老师编著的一本管理学类图书。" />
+
+        <ImageView
+            android:id="@+id/link_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="@+id/title_icon"
+            app:layout_constraintTop_toBottomOf="@+id/sub2"
+            app:srcCompat="@drawable/ic_insert_link"
+            android:contentDescription="@string/link_icon" />
+
+        <TextView
+            android:id="@+id/online"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:text="@{bookDetail.bookDetailLiveData.online}"
+            app:layout_constraintBottom_toBottomOf="@+id/link_icon"
+            app:layout_constraintStart_toEndOf="@+id/link_icon"
+            app:layout_constraintTop_toTopOf="@+id/link_icon"
+            tools:text="http://book.jd.com/10483893.html" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

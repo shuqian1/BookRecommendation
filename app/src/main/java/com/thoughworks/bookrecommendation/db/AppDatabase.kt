@@ -13,8 +13,8 @@ abstract class AppDatabase : RoomDatabase() {
     companion object {
         @Volatile
         private var instance: AppDatabase? = null
-        const val PAGE_SIZE = 10
-        const val DB_NAME = "book_recommendation"
+        const val PAGE_SIZE = 20
+        private const val DB_NAME = "book_recommendation"
 
         fun getDatabaseInstance(mContext: Context): AppDatabase =
             instance ?: synchronized(this) {
