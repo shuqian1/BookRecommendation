@@ -168,12 +168,13 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="8dp"
-                android:text="@{bookDetail.bookDetailLiveData.online}"
+                android:text="@{bookDetail.bookDetailLiveData.getLink()}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/link_icon"
                 app:layout_constraintTop_toBottomOf="@+id/sub2"
+                android:autoLink="web"
                 tools:text="京东商城:http:\/\/book.jd.com\/10379459.html 当当网:http:\/\/product.dangdang.com\/product.aspx?product_id=21018087 亚马逊:http:\/\/www.amazon.cn\/dp\/B004HEXD18" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

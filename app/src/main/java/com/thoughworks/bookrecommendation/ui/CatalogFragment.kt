@@ -52,8 +52,6 @@ class CatalogFragment : Fragment() {
                 bundle.putString("id",any.toString())
                 val catalogFragment=CatalogFragment()
                 catalogFragment.arguments = bundle
-                println("id:"+any.toString())
-//                TODO switch fragment
                 val intent = Intent(activity, BookListActivity::class.java)
                 intent.putExtras(bundle)
                 startActivity(intent)

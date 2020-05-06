@@ -10,4 +10,9 @@ data class Book(
     val sub2: String,
     val tags: String,
     val title: String
-)
+){
+     fun getLink():String {
+        val list = online.split(" ")
+        return list.joinToString("\n")
+    }
+}
