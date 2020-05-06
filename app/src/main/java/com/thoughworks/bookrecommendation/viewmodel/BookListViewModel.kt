@@ -2,6 +2,7 @@ package com.thoughworks.bookrecommendation.viewmodel
 
 import android.content.Context
 import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -13,6 +14,8 @@ import com.thoughworks.bookrecommendation.repository.BookRepository
 class BookListViewModel(context: Context) : ViewModel() {
     var booksLiveData = MediatorLiveData<List<Book>>()
     var bookDetailLiveData = MediatorLiveData<Book>()
+    var status = MutableLiveData<Boolean>()
+    var errorMessage = ""
 
     private val bookRepository = BookRepository(context)
 
@@ -23,10 +26,16 @@ class BookListViewModel(context: Context) : ViewModel() {
                 override fun onSuccess(result: PageResult?) {
                     booksLiveData.postValue(result?.data)
                     bookRepository.updateDBBook(catalogId, result?.data)
+                    status.postValue(true)
                 }
 
                 override fun onFailure(e: Throwable, isNetWorkError: Boolean) {
                     e.printStackTrace()
+                }
+
+                override fun onBusinessFail(code: Int, message: String) {
+                    status.postValue(false)
+                    errorMessage = message
                 }
             }
         bookRepository.getBookList(catalogId, pageIndex, observer)
