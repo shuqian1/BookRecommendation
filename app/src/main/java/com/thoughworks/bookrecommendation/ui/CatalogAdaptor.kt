@@ -1,7 +1,6 @@
 package com.thoughworks.bookrecommendation.ui
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -28,12 +27,9 @@ class CatalogAdaptor : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             )
         )
 
-        viewHolder.itemView.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View) {
-                clickListener.onItemClick(v, v.tag)
-            }
-
-        })
+        viewHolder.itemView.setOnClickListener { v ->
+            clickListener.onItemClick(v, v.tag)
+        }
 
         return viewHolder
     }

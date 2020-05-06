@@ -29,7 +29,7 @@ class ExampleUnitTest {
     }
 
     @Test
-    internal fun rest() {
+     fun test_catalog_list() {
         apiService.getCatalogList(KEY, DTYPE)
             .executeResult(object : ResultObserver<List<Catalog>>() {
                 override fun onSuccess(result: List<Catalog>?) {
