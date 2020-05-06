@@ -1,7 +1,6 @@
 package com.thoughworks.bookrecommendation.ui
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -9,12 +8,13 @@ import com.thoughworks.bookrecommendation.R
 import com.thoughworks.bookrecommendation.databinding.BookItemBinding
 import com.thoughworks.bookrecommendation.model.data.Book
 
-class BookAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class BookAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val bookList = mutableListOf<Book>()
     private lateinit var clickListener: OnItemClickListener
 
-    inner class BookViewHolder(private val dataBinding: BookItemBinding): RecyclerView.ViewHolder(dataBinding.root) {
+    inner class BookViewHolder(private val dataBinding: BookItemBinding) :
+        RecyclerView.ViewHolder(dataBinding.root) {
         fun bind(book: Book) {
             dataBinding.book = book
         }

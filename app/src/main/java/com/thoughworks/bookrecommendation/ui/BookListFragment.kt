@@ -29,7 +29,9 @@ class BookListFragment : Fragment() {
         val catalogId = activity?.intent?.extras?.getString("id")?.toInt()?: 0
 
         val rootView = inflater.inflate(R.layout.book_list_fragment, container, false)
+
         rootView.rv_book_list.layoutManager = LinearLayoutManager(this.activity)
+        rootView.rv_book_list.emptyStateView = rootView.emptyView
         rootView.rv_book_list.adapter = bookAdapter
 
         val bookViewModel =
