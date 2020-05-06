@@ -28,7 +28,7 @@ class CatalogFragment : Fragment() {
         super.onCreate(savedInstanceState)
         val rootView = inflater.inflate(R.layout.catalog_fragment, container, false)
         val catalogRepository = CatalogRepository(requireContext())
-        val catalogViewModel = CatalogViewModel(catalogRepository)
+        val catalogViewModel = CatalogViewModel(requireContext(), catalogRepository)
         catalogViewModel.catalogLiveData.observe(viewLifecycleOwner, Observer { catalogs ->
             catalogAdaptor.updateData(catalogs)
         })
@@ -50,8 +50,8 @@ class CatalogFragment : Fragment() {
         catalogAdaptor.setOnItemClickListener(object : OnItemClickListener {
             override fun onItemClick(view: View, any: Any) {
                 var bundle = Bundle()
-                bundle.putString("id",any.toString())
-                val catalogFragment=CatalogFragment()
+                bundle.putString("id", any.toString())
+                val catalogFragment = CatalogFragment()
                 catalogFragment.arguments = bundle
                 val intent = Intent(activity, BookListActivity::class.java)
                 intent.putExtras(bundle)
