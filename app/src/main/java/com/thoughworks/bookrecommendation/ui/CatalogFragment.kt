@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.thoughworks.bookrecommendation.R
+import com.thoughworks.bookrecommendation.repository.CatalogRepository
 import com.thoughworks.bookrecommendation.viewmodel.CatalogViewModel
 
 class CatalogFragment : Fragment() {
@@ -27,8 +28,8 @@ class CatalogFragment : Fragment() {
     ): View? {
         super.onCreate(savedInstanceState)
         val rootView = inflater.inflate(R.layout.catalog_fragment, container, false)
-
-        val catalogViewModel = CatalogViewModel(requireContext())
+        val catalogRepository = CatalogRepository(requireContext())
+        val catalogViewModel = CatalogViewModel(catalogRepository)
         catalogViewModel.catalogLiveData.observe(viewLifecycleOwner, Observer { catalogs ->
             catalogAdaptor.updateData(catalogs)
         })

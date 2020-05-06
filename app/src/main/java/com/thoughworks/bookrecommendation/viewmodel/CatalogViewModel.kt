@@ -10,11 +10,11 @@ import com.thoughworks.bookrecommendation.http.ResultObserver
 import com.thoughworks.bookrecommendation.model.data.Catalog
 import com.thoughworks.bookrecommendation.repository.CatalogRepository
 
-class CatalogViewModel(context: Context) : ViewModel() {
+class CatalogViewModel(val catalogRepository: CatalogRepository) : ViewModel() {
     var catalogLiveData = MediatorLiveData<List<Catalog>>()
-    private val catalogRepository = CatalogRepository(context)
     var status = MutableLiveData<Boolean>()
     var errorMessage = ""
+
 
     fun getCatalogList() {
         getDBCatalogList()
