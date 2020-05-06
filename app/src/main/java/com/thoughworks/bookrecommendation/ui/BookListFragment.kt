@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -39,11 +38,6 @@ class BookListFragment : Fragment() {
             ViewModelProviders.of(activity!!, BookListViewModelFactory(this.requireContext())).get<BookListViewModel>(BookListViewModel::class.java)
         bookViewModel.booksLiveData.observe(viewLifecycleOwner, Observer {
             bookAdapter.updateData(it)
-        })
-        bookViewModel.status.observe(viewLifecycleOwner, Observer { status ->
-            if (!status) {
-                Toast.makeText(activity,bookViewModel.errorMessage, Toast.LENGTH_SHORT).show()
-            }
         })
 
         loadMoreItem(rootView, bookViewModel, catalogId)
