@@ -55,7 +55,7 @@
                 app:srlTextRelease="@string/srl_footer_release"
                 app:srlTextSizeTitle="16sp" />
 
-            <com.thoughworks.bookrecommendation.ui.RecyclerViewEmptySupport
+            <com.thoughworks.bookrecommendation.ui.RecyclerViewEmptyLoadingSupport
                 android:id="@+id/rv_book_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
@@ -67,7 +67,17 @@
             android:id="@+id/emptyView"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            app:srcCompat="@drawable/ic_empty_list"
+            app:layout_constraintBottom_toBottomOf="@+id/refreshLayout"
+            app:layout_constraintEnd_toEndOf="@+id/refreshLayout"
+            app:layout_constraintStart_toStartOf="@+id/refreshLayout"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_empty_list" />
+
+        <ProgressBar
+            android:id="@+id/loadingView"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:indeterminate="true"
             app:layout_constraintBottom_toBottomOf="@+id/refreshLayout"
             app:layout_constraintEnd_toEndOf="@+id/refreshLayout"
             app:layout_constraintStart_toStartOf="@+id/refreshLayout"

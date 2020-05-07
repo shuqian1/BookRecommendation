@@ -13,7 +13,7 @@ class BookAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val bookList = mutableListOf<Book>()
     private lateinit var clickListener: OnItemClickListener
 
-    inner class BookViewHolder(private val dataBinding: BookItemBinding) :
+    inner class BookViewHolder(val dataBinding: BookItemBinding) :
         RecyclerView.ViewHolder(dataBinding.root) {
         fun bind(book: Book) {
             dataBinding.book = book
@@ -38,6 +38,7 @@ class BookAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         (holder as BookViewHolder).bind(bookList[position])
         holder.itemView.tag = bookList[position]
+        holder.dataBinding.executePendingBindings()
     }
 
     fun updateData(newData: List<Book>?) {

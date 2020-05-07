@@ -6,7 +6,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.thoughworks.bookrecommendation.model.entity.RecyclerViewEnum
 
-class RecyclerViewEmptySupport : RecyclerView {
+class RecyclerViewEmptyLoadingSupport : RecyclerView {
 
     var stateView: RecyclerViewEnum? = RecyclerViewEnum.EMPTY_STATE
         set(value) {
@@ -14,7 +14,7 @@ class RecyclerViewEmptySupport : RecyclerView {
             setState()
         }
     var emptyStateView: View? = null
-//    var loadingStateView: View? = null
+    var loadingStateView: View? = null
 
 
     constructor(context: Context) : super(context) {}
@@ -51,32 +51,32 @@ class RecyclerViewEmptySupport : RecyclerView {
     fun onChangeState() {
         if (adapter?.itemCount == 0) {
             emptyStateView?.visibility = View.VISIBLE
-//            loadingStateView?.visibility = View.GONE
-            this@RecyclerViewEmptySupport.visibility = View.GONE
+            loadingStateView?.visibility = View.GONE
+            this@RecyclerViewEmptyLoadingSupport.visibility = View.GONE
         } else {
             emptyStateView?.visibility = View.GONE
-//            loadingStateView?.visibility = View.GONE
-            this@RecyclerViewEmptySupport.visibility = View.VISIBLE
+            loadingStateView?.visibility = View.GONE
+            this@RecyclerViewEmptyLoadingSupport.visibility = View.VISIBLE
         }
     }
 
     private fun setState() {
 
         when (this.stateView) {
-//            RecyclerViewEnum.LOADING -> {
-//                loadingStateView?.visibility = View.VISIBLE
-//                this@RecyclerViewEmptyLoadingSupport.visibility = View.GONE
-//                emptyStateView?.visibility = View.GONE
-//            }
+            RecyclerViewEnum.LOADING -> {
+                loadingStateView?.visibility = View.VISIBLE
+                this@RecyclerViewEmptyLoadingSupport.visibility = View.GONE
+                emptyStateView?.visibility = View.GONE
+            }
 
             RecyclerViewEnum.NORMAL -> {
-//                loadingStateView?.visibility = View.GONE
-                this@RecyclerViewEmptySupport.visibility = View.VISIBLE
+                loadingStateView?.visibility = View.GONE
+                this@RecyclerViewEmptyLoadingSupport.visibility = View.VISIBLE
                 emptyStateView?.visibility = View.GONE
             }
             RecyclerViewEnum.EMPTY_STATE -> {
-//                loadingStateView?.visibility = View.GONE
-                this@RecyclerViewEmptySupport.visibility = View.GONE
+                loadingStateView?.visibility = View.GONE
+                this@RecyclerViewEmptyLoadingSupport.visibility = View.GONE
                 emptyStateView?.visibility = View.VISIBLE
             }
         }

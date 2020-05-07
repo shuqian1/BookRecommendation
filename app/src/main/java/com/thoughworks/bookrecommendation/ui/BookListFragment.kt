@@ -30,9 +30,12 @@ class BookListFragment : Fragment() {
 
         val rootView = inflater.inflate(R.layout.book_list_fragment, container, false)
 
-        rootView.rv_book_list.layoutManager = LinearLayoutManager(this.activity)
-        rootView.rv_book_list.emptyStateView = rootView.emptyView
-        rootView.rv_book_list.adapter = bookAdapter
+        rootView.rv_book_list?.apply {
+            layoutManager = LinearLayoutManager(activity)
+            emptyStateView = rootView.emptyView
+            loadingStateView = rootView.loadingView
+            adapter = bookAdapter
+        }
 
         val bookViewModel =
             ViewModelProviders.of(activity!!, BookListViewModelFactory(this.requireContext())).get<BookListViewModel>(BookListViewModel::class.java)

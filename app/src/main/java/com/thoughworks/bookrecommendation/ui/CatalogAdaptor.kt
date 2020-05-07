@@ -41,6 +41,7 @@ class CatalogAdaptor : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         (holder as CatalogViewHolder).bind(catalogList[position])
         holder.itemView.tag = catalogList[position].id
+        holder.dataBinding.executePendingBindings()
     }
 
     fun updateData(newData: List<Catalog>?) {
