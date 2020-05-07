@@ -20,7 +20,7 @@ class BookListFragment : Fragment() {
 
     private val bookAdapter by lazy { BookAdapter() }
 
-    var pageIndex = 1
+    private var pageIndex = 1
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -65,6 +65,11 @@ class BookListFragment : Fragment() {
             bookViewModel.loadMoreBookList(catalogId, ++pageIndex)
             it.finishLoadMore()
         }
+        bookViewModel.noMoreBookFlag.observe(viewLifecycleOwner, Observer {
+            if(it) {
+                refreshLayout.finishLoadMoreWithNoMoreData()
+            }
+        })
     }
 
     override fun onHiddenChanged(hidden: Boolean) {

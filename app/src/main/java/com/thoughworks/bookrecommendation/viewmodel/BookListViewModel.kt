@@ -14,6 +14,7 @@ import com.thoughworks.bookrecommendation.repository.BookRepository
 class BookListViewModel(val context: Context) : ViewModel() {
     var booksLiveData = MediatorLiveData<List<Book>>()
     var bookDetailLiveData = MediatorLiveData<Book>()
+    var noMoreBookFlag = MediatorLiveData<Boolean>()
 
     private val bookRepository = BookRepository(context)
 
@@ -56,6 +57,11 @@ class BookListViewModel(val context: Context) : ViewModel() {
 
                 override fun onFailure(e: Throwable, isNetWorkError: Boolean) {
                     e.printStackTrace()
+                }
+                override fun onBusinessFail(code: Int, message: String) {
+                    if(code == 202) {
+                        noMoreBookFlag.postValue(true)
+                    }
                 }
             }
         bookRepository.getBookList(catalogId, pageIndex, observer)
