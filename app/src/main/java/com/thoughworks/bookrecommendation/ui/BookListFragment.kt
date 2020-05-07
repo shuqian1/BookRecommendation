@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.thoughworks.bookrecommendation.R
 import com.thoughworks.bookrecommendation.model.data.Book
+import com.thoughworks.bookrecommendation.model.entity.RecyclerViewEnum
 import com.thoughworks.bookrecommendation.viewmodel.BookListViewModel
 import com.thoughworks.bookrecommendation.viewmodel.BookListViewModelFactory
 import kotlinx.android.synthetic.main.book_list_fragment.view.*
@@ -35,6 +36,7 @@ class BookListFragment : Fragment() {
             emptyStateView = rootView.emptyView
             loadingStateView = rootView.loadingView
             adapter = bookAdapter
+            stateView = RecyclerViewEnum.LOADING
         }
 
         val bookViewModel =

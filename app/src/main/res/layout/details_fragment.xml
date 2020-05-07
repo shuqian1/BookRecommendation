@@ -19,7 +19,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/detail"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/book_img"
@@ -36,14 +36,17 @@
 
             <TextView
                 android:id="@+id/title"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginLeft="12dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
                 android:text="@{bookDetail.bookDetailLiveData.title}"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/title_icon"
+                app:layout_constraintEnd_toStartOf="@+id/like_icon"
                 app:layout_constraintStart_toEndOf="@+id/title_icon"
                 app:layout_constraintTop_toTopOf="@+id/title_icon"
                 tools:text="向诸葛亮借智慧" />

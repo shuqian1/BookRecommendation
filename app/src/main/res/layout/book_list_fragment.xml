@@ -75,8 +75,9 @@
 
         <ProgressBar
             android:id="@+id/loadingView"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:indeterminate="true"
             app:layout_constraintBottom_toBottomOf="@+id/refreshLayout"
             app:layout_constraintEnd_toEndOf="@+id/refreshLayout"

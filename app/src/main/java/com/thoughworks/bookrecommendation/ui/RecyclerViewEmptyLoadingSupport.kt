@@ -8,7 +8,7 @@ import com.thoughworks.bookrecommendation.model.entity.RecyclerViewEnum
 
 class RecyclerViewEmptyLoadingSupport : RecyclerView {
 
-    var stateView: RecyclerViewEnum? = RecyclerViewEnum.EMPTY_STATE
+    var stateView: RecyclerViewEnum? = RecyclerViewEnum.LOADING
         set(value) {
             field = value
             setState()

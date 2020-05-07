@@ -18,8 +18,8 @@
 
         <ImageView
             android:id="@+id/book"
-            android:layout_width="73dp"
-            android:layout_height="78dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
@@ -34,6 +34,10 @@
             android:id="@+id/catalog_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:autoSizeMaxTextSize="20sp"
+            android:autoSizeMinTextSize="10sp"
+            android:autoSizeStepGranularity="1sp"
+            android:autoSizeTextType="uniform"
             android:text="@{catalog.catalog}"
             android:textSize="20sp"
             android:textStyle="bold"
