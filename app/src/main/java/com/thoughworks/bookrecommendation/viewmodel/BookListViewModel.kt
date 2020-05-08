@@ -16,7 +16,7 @@ class BookListViewModel(val context: Context) : ViewModel() {
     var bookDetailLiveData = MediatorLiveData<Book>()
     var noMoreBookFlag = MediatorLiveData<Boolean>()
 
-    private val bookRepository = BookRepository(context)
+    var bookRepository = BookRepository(context)
 
     fun getBookList(catalogId: Int, pageIndex: Int = 1) {
         getDBBookList(catalogId)
