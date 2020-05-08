@@ -38,12 +38,12 @@ class CatalogViewModelTest {
 
     @Test
     internal fun `get web category when internet success`() {
-        val catalogRepository = Mockito.mock(CatalogRepository::class.java)
         val context = Mockito.mock(Context::class.java)
+        val catalogRepository = CatalogRepository(context)
         val catalogViewModel = CatalogViewModel(context, catalogRepository)
         val catalogList = MediatorLiveData<List<DBCatalog>>()
         catalogList.postValue(listOf(DBCatalog("文学", 1)))
         catalogViewModel.getCatalogList()
-        assertEquals(catalogViewModel.catalogLiveData.value?.size, null)
+        assertEquals(catalogViewModel.catalogLiveData.value?.size, 17)
     }
 }
