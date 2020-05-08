@@ -27,18 +27,18 @@ class BookRepository(context: Context) {
             .executeResult(observer)
     }
 
+    fun getListByCondition(catalogId: Int): LiveData<List<DBBook>> {
+        return database.bookDao().getListByCondition(catalogId, PAGE_SIZE)
+    }
+
     fun updateDBBook(catalogId: Int, result: List<Book>?) {
         val books = Gson().fromJson<List<DBBook>>(
-            Gson().toJson(result),object: TypeToken<List<DBBook>>() {}.type
+            Gson().toJson(result), object: TypeToken<List<DBBook>>() {}.type
         )
         books.forEach {
             it.catalogId = catalogId
         }
         BookAsyncTask().execute(BookTaskParam(catalogId, books))
-    }
-
-    fun getListByCondition(catalogId: Int): LiveData<List<DBBook>> {
-        return database.bookDao().getListByCondition(catalogId, PAGE_SIZE)
     }
 
     inner class BookAsyncTask : AsyncTask<BookTaskParam, Void?, Void?>() {

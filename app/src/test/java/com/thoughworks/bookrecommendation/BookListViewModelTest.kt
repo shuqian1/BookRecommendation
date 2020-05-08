@@ -43,7 +43,7 @@ class BookListViewModelTest {
     }
 
     @Test
-    internal fun `get books when internet success`() {
+    internal fun `get web books when internet success`() {
         val bookRepository = Mockito.mock(BookRepository::class.java)
         val context = Mockito.mock(Context::class.java)
         val bookListViewModel = BookListViewModel(context)
